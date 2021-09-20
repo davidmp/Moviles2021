@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "369096488792",
+    "project_id": "movillogin-6b600",
+    "storage_bucket": "movillogin-6b600.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369096488792:android:f786d0fdb30daf30f9572d",
+        "android_client_info": {
+          "package_name": "pe.edu.upeu.app_moviles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369096488792-5sjq0jbh8okb9ftklpghqdrd080h2r8a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.edu.upeu.app_moviles",
+            "certificate_hash": "1f5e5db071e61d9d99e8e016c75071b454293c36"
+          }
+        },
+        {
+          "client_id": "369096488792-57j7rl7thslq5dna3i9ll3ak5vgufh2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKruTxyOkSFoR8f2AI0qlcO1_bxXRZIcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369096488792-57j7rl7thslq5dna3i9ll3ak5vgufh2a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
