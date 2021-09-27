@@ -32,14 +32,14 @@ class _HomeDrawerState extends State<HomeDrawer> {
     drawerList = <DrawerList>[
       DrawerList(
         index: DrawerIndex.HOME,
-        labelName: 'Entrenar',
+        labelName: 'Persona',
         icon: Icon(Icons.home),
       ),
       DrawerList(
         index: DrawerIndex.Help,
         labelName: 'Ver Predicción',
         isAssetsImage: true,
-        imageName: 'assets/images/supportIcon.png',
+        imageName: 'assets/imagen/man-icon.png',
       ),
       DrawerList(
         index: DrawerIndex.FeedBack,

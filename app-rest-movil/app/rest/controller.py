@@ -6,9 +6,9 @@ import datetime
 from flask_jwt import jwt_required
 from bson.objectid import ObjectId
 
-@app.route("/pru")
+@app.route("/api/persona")
 def home_page():
-    data = list(mongo.db.user.find())
+    data = list(mongo.db.persona.find())
     #print(online_users)
     print("Holasss")
     return Response(

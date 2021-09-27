@@ -3,6 +3,7 @@ import 'package:app_moviles/drawer/drawer_user_controller.dart';
 import 'package:app_moviles/drawer/home_drawer.dart';
 //import 'package:covidapp/drawer/feedback_screen.dart';
 import 'package:app_moviles/ui/help_screen.dart';
+import 'package:app_moviles/ui/persona_main.dart';
 
 //import 'package:covidapp/drawer/home_screen.dart';
 //import 'package:covidapp/drawer/invite_friend_screen.dart';
@@ -53,7 +54,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       drawerIndex = drawerIndexdata;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
-          //screenView = TrainingPredict();
+          screenView = MainPersona();
         });
       } else if (drawerIndex == DrawerIndex.Help) {
         setState(() {
