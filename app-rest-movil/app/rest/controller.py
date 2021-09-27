@@ -74,3 +74,27 @@ def update(id):
         response=json.dumps({"message": "OOPS!! can't update"}, default=str),
         status=500,
         mimetype="application/json")
+
+@app.route("/api/persona/<string:id>", methods=["DELETE"])
+@jwt_required()
+def delete(id):
+    try:
+        dbResponse = mongo.db.persona.delete_one({"_id": ObjectId(id)})
+        if dbResponse.deleted_count == 1:
+            return Response(
+            response=json.dumps({"message": "Deleted!!", "id": f"{id}"}, default=str),
+            status=200,
+            mimetype="application/json"
+            )
+        return Response(
+        response=json.dumps({"message": "Not Found!!", "id": f"{id}"}, default=str),
+        status=404,
+        mimetype="application/json"
+        )
+    except Exception as e:
+        print(e)
+        return Response(
+        response=json.dumps({"message": "OOPS!! can't delete"}, default=str),
+        status=500,
+        mimetype="application/json"
+        )
