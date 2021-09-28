@@ -68,10 +68,6 @@ class _LoginPageState extends State<LoginPage> {
                 token="JWT "+value.access_token;
                 prefs.setString("token", token);
                 print(token);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => NavigationHomeScreen()));
               }).catchError((onError){
                 print(onError.toString());
               });
