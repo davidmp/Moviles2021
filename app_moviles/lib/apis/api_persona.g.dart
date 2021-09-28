@@ -10,9 +10,9 @@ class _PersonaApi implements PersonaApi {
 
   @override
   getPersona() async {
-    //final prefs= await SharedPreferences.getInstance();
-    //var tokenx=prefs.getString("token");
-    //print("VER: ${tokenx}");
+    final prefs= await SharedPreferences.getInstance();
+    var tokenx=prefs.getString("token");
+    print("VERListar: ${tokenx}");
     //ArgumentError.checkNotNull(tokenx, "token");
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -60,6 +60,7 @@ class _PersonaApi implements PersonaApi {
   @override
   login(user) async{
     ArgumentError.checkNotNull(user, "user");
+    print("ver: ${user.toJson()}");
     const _extra=<String, dynamic>{};
     final queryParameters= <String, dynamic>{};
     final _data=<String, dynamic>{};
@@ -73,7 +74,7 @@ class _PersonaApi implements PersonaApi {
             baseUrl:baseUrl
         ),
         data:_data);
-    var value=ModeloUser.fromJson(_result.data);
+    var value=ModeloToken.fromJson(_result.data);
     return Future.value(value);
   }
 

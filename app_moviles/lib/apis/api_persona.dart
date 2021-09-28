@@ -24,7 +24,7 @@ abstract class PersonaApi {
   Future<List<ModeloPersona>> getPersona();
 
   @POST("/api/auth")
-  Future<ModeloUser> login(@Body() ModeloUser usuario);
+  Future<ModeloToken> login(@Body() ModeloUser usuario);
 
   @GET("/api/persona/{id}")
   Future<List<ModeloPersona>> getPersonaId(@Header("Authorization") String token, @Path("id") String id);

@@ -1,6 +1,27 @@
+import 'package:app_moviles/apis/api_persona.dart';
 import 'package:app_moviles/drawer/navigation_home_screen.dart';
+import 'package:app_moviles/models/modelo_user.dart';
 import 'package:flutter/material.dart';
 import 'package:app_moviles/login/sing_in.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class MainLogin extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Provider<PersonaApi>(
+      create: (_)=>PersonaApi.create(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primaryColor: Colors.lightBlue
+        ),
+        home: LoginPage(),
+      ),
+    );
+  }
+}
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -23,18 +44,38 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 20,
             ),
-            _singInButton(),
+            _singInButton(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _singInButton() {
+  Widget _singInButton(BuildContext context) {
     return OutlinedButton(
       onPressed: () async {
+        var token;
+        final prefs= await SharedPreferences.getInstance();
         sinInwhitGoogle().then((result) {
+          print("Holasssssss $result");
           if (result != null) {
+            final api=Provider.of<PersonaApi>(context, listen: false);
+            final usuario=new ModeloUser();
+             usuario.username="davidmp";
+             usuario.password="Moviles12345";
+              api.login(usuario).then((value) {
+                //print("Probando!!!......"+value.access_token);
+                token="JWT "+value.access_token;
+                prefs.setString("token", token);
+                print(token);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NavigationHomeScreen()));
+              }).catchError((onError){
+                print(onError.toString());
+              });
+
             Navigator.of(context).push(MaterialPageRoute(builder: (context) {
               return NavigationHomeScreen();
             }));
