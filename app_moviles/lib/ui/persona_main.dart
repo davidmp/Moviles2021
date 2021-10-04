@@ -149,7 +149,48 @@ class _PersonaUIState extends State<PersonaUI> {
                           backgroundImage:
                           AssetImage("assets/imagen/man-icon.png"),
                         ),
-                        trailing: Icon(Icons.star)),
+                        trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              /*IconButton(icon: Icon(Icons.edit), onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => PersonaEdit(todo: personax)),
+                                ).then(onGoBack);
+                              }),*/
+                              IconButton(icon: Icon(Icons.delete), onPressed: (){
+                                showDialog(context: context,
+                                    barrierDismissible: true,
+                                    builder: (BuildContext context){
+                                      return AlertDialog(
+                                        title: Text("Mensaje de confirmacion"),
+                                        content: Text("Desea Eliminar?"),
+                                        actions: [
+                                          FlatButton(child: const Text('CANCEL'),
+                                            onPressed: (){
+                                              Navigator.of(context).pop('Failure');
+                                            },
+                                          ),
+                                          FlatButton( child: const Text('ACCEPT'),
+                                              onPressed: (){
+                                                Navigator.of(context).pop('Success');
+                                              })
+                                        ],
+                                      );
+                                    }
+                                ).then((value){
+                                  if(value.toString()=="Success"){
+                                    print(personax.id);
+                                    Provider.of<PersonaApi>(context, listen: false).deletePersona(personax.id).then((value) => onGoBack(value));
+                                    //var onGoBack = onGoBack;
+                                    //BlocProvider.of<ProductosBloc>(context).add(DeleteProductoEvent(producto: state.productosList[index]));
+                                  }
+                                });
+                              })
+                            ]
+                        )
+                        ),
                   ],
                 ),
               ),

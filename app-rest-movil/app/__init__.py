@@ -1,6 +1,7 @@
 from flask import Flask
 #from flask_pymongo import pymongo
 from flask_mongoengine import MongoEngine
+import datetime
 
 app = Flask(__name__)
 
@@ -8,8 +9,14 @@ app.config["MONGODB_SETTINGS"] = {
     "db":"dataapp"
 }
 app.config["USER_ENABLE_EMAIL"]=False
-app.config["SECRET_KEY"]="dddd"
+app.config["SECRET_KEY"]="super-secret"
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(minutes=60)
+#app.config["JWT_REFRESH_TOKEN_EXPIRES"] = datetime.timedelta(days=7)
 app.config["JWT_AUTH_URL_RULE"]="/api/auth"
+
+
+
+
 app.debug=True
 
 

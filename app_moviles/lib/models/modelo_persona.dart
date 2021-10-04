@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class ModeloPersona {
+  String id;
   String dni;
   String nombre;
   String telefono;
@@ -8,9 +9,10 @@ class ModeloPersona {
   String fecha_nac;
   String genero;
 
-  ModeloPersona({this.dni="", this.nombre="",this.telefono="", this.edad, this.fecha_nac="", this.genero});
+  ModeloPersona({this.id="",this.dni="", this.nombre="",this.telefono="", this.edad, this.fecha_nac="", this.genero});
   factory ModeloPersona.fromJson(Map<String, dynamic> map) {
     return ModeloPersona(
+        id: map["_id"],
         dni: map["dni"],
         nombre: map["nombre"],
         telefono: map["telefono"],

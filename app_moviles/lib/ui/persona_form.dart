@@ -194,12 +194,6 @@ class _PersonaFormState extends State<PersonaForm> {
                                     ),
                                   );
                                   _formKey.currentState.save();
-                                  /*print(_dni);
-                            print(_nombre);
-                            print(_fecha_nac);
-                            print(_edad);
-                            print(_telefono);
-                            print(_genero);*/
                                   ModeloPersona mp = new ModeloPersona();
                                   mp.nombre = _nombre;
                                   mp.dni = _dni;
