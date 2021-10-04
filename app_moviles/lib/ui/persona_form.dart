@@ -178,46 +178,54 @@ class _PersonaFormState extends State<PersonaForm> {
                     _buildGenero(),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          // Validate returns true if the form is valid, or false otherwise.
-                          if (_formKey.currentState.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Processing Data'),
-                              ),
-                            );
-                            _formKey.currentState.save();
-                            /*print(_dni);
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ElevatedButton(onPressed: (){
+                              Navigator.pop(context, true);
+                            }, child: Text('Cancelar')),
+                            ElevatedButton(
+                              onPressed: () async {
+                                // Validate returns true if the form is valid, or false otherwise.
+                                if (_formKey.currentState.validate()) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Processing Data'),
+                                    ),
+                                  );
+                                  _formKey.currentState.save();
+                                  /*print(_dni);
                             print(_nombre);
                             print(_fecha_nac);
                             print(_edad);
                             print(_telefono);
                             print(_genero);*/
-                            ModeloPersona mp = new ModeloPersona();
-                            mp.nombre = _nombre;
-                            mp.dni = _dni;
-                            mp.telefono = _telefono;
-                            mp.edad = _edad;
-                            mp.fecha_nac = _fecha_nac;
-                            mp.genero=_genero;
-                            var api = await Provider.of<PersonaApi>(context, listen: false).createPersona(mp);
-                            print("ver: ${api.toJson()['mensaje']}");
-                            if (api.toJson()['mensaje'] =="Se creo correctamente") {
-                              Navigator.pop(context, () {
-                                setState(() {});
-                              });
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationHomeScreen()));
-                            }
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('No estan bien los datos de los campos!'),
-                              ),
-                            );
-                          }
-                        },
-                        child: const Text('Guardar'),
+                                  ModeloPersona mp = new ModeloPersona();
+                                  mp.nombre = _nombre;
+                                  mp.dni = _dni;
+                                  mp.telefono = _telefono;
+                                  mp.edad = _edad;
+                                  mp.fecha_nac = _fecha_nac;
+                                  mp.genero=_genero;
+                                  var api = await Provider.of<PersonaApi>(context, listen: false).createPersona(mp);
+                                  print("ver: ${api.toJson()['mensaje']}");
+                                  if (api.toJson()['mensaje'] =="Se creo correctamente") {
+                                    Navigator.pop(context, () {
+                                      setState(() {});
+                                    });
+                                    // Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationHomeScreen()));
+                                  }
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('No estan bien los datos de los campos!'),
+                                    ),
+                                  );
+                                }
+                              },
+                              child: const Text('Guardar'),
+                            ),
+                          ],
                       ),
                     ),
                   ],
