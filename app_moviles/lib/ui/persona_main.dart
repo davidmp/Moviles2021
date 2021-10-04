@@ -1,5 +1,6 @@
 import 'package:app_moviles/apis/api_persona.dart';
 import 'package:app_moviles/drawer/app_theme.dart';
+import 'package:app_moviles/ui/persona_form.dart';
 import 'package:flutter/material.dart';
 import 'package:app_moviles/models/modelo_persona.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +37,11 @@ class _PersonaUIState extends State<PersonaUI> {
     print("entro aqui");
   }
 
+  Future onGoBack(dynamic value) {
+    setState(() {
+      print(value);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +52,31 @@ class _PersonaUIState extends State<PersonaUI> {
         ),
         automaticallyImplyLeading: false,
         centerTitle: true,
+        actions: <Widget>[
+          Padding(padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: (){
+                print("Si funciona");
+              },
+              child: Icon(Icons.search, size: 26.0,),
+            ),
+          ),
+          Padding(padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: (){
+              //final producto=new ModeloProductos();
+              //formDialog(context, producto);
+                print("Si funciona 2");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PersonaForm()),
+                ).then(onGoBack);
+              },
+              child: Icon(Icons.add_box_sharp),
+            ),
+          )
+        ],
+
       ),
       backgroundColor: AppTheme.nearlyWhite,
       body: FutureBuilder<List<ModeloPersona>>(

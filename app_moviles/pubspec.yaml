@@ -48,6 +48,8 @@ dependencies:
   logger: ^0.8.2
   animated_float_action_button: ^1.0.3
   syncfusion_flutter_charts: ^19.2.62
+  checkbox_grouped: ^1.6.1+1
+  dropdown_formfield: ^0.1.3
 
 dev_dependencies:
   flutter_test:
