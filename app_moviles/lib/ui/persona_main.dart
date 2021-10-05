@@ -1,5 +1,6 @@
 import 'package:app_moviles/apis/api_persona.dart';
 import 'package:app_moviles/drawer/app_theme.dart';
+import 'package:app_moviles/ui/persona_edit.dart';
 import 'package:app_moviles/ui/persona_form.dart';
 import 'package:flutter/material.dart';
 import 'package:app_moviles/models/modelo_persona.dart';
@@ -153,12 +154,12 @@ class _PersonaUIState extends State<PersonaUI> {
                             mainAxisSize: MainAxisSize.min,
                             //mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
-                              /*IconButton(icon: Icon(Icons.edit), onPressed: (){
+                              IconButton(icon: Icon(Icons.edit), onPressed: (){
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => PersonaEdit(todo: personax)),
+                                  MaterialPageRoute(builder: (context) => PersonaFormEdit(modelP: personax)),
                                 ).then(onGoBack);
-                              }),*/
+                              }),
                               IconButton(icon: Icon(Icons.delete), onPressed: (){
                                 showDialog(context: context,
                                     barrierDismissible: true,
