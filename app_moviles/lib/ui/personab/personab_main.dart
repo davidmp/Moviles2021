@@ -1,12 +1,12 @@
 import 'package:app_moviles/apis/api_persona.dart';
 import 'package:app_moviles/drawer/app_theme.dart';
-import 'package:app_moviles/ui/persona_edit.dart';
-import 'package:app_moviles/ui/persona_form.dart';
+import 'package:app_moviles/ui/personab/personab_edit.dart';
+import 'package:app_moviles/ui/personab/personab_form.dart';
 import 'package:flutter/material.dart';
 import 'package:app_moviles/models/modelo_persona.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-class MainPersona extends StatelessWidget{
+class MainPersonaB extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Provider<PersonaApi>(
@@ -16,17 +16,17 @@ class MainPersona extends StatelessWidget{
         theme: ThemeData(
             primaryColor: Colors.lightBlue
         ),
-        home: PersonaUI(),
+        home: PersonaUIB(),
       ),
     );
   }
 }
-class PersonaUI extends StatefulWidget {
+class PersonaUIB extends StatefulWidget {
   @override
-  _PersonaUIState createState() => _PersonaUIState();
+  _PersonaUIBState createState() => _PersonaUIBState();
 }
 
-class _PersonaUIState extends State<PersonaUI> {
+class _PersonaUIBState extends State<PersonaUIB> {
 //ApiCovid apiService;
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
   var api;
@@ -65,12 +65,12 @@ class _PersonaUIState extends State<PersonaUI> {
           Padding(padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: (){
-              //final producto=new ModeloProductos();
-              //formDialog(context, producto);
+                //final producto=new ModeloProductos();
+                //formDialog(context, producto);
                 print("Si funciona 2");
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PersonaForm()),
+                  MaterialPageRoute(builder: (context) => PersonaBForm()),
                 ).then(onGoBack);
               },
               child: Icon(Icons.add_box_sharp),
@@ -157,7 +157,7 @@ class _PersonaUIState extends State<PersonaUI> {
                               IconButton(icon: Icon(Icons.edit), onPressed: (){
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => PersonaFormEdit(modelP: personax)),
+                                  MaterialPageRoute(builder: (context) => PersonaBFormEdit(modelP: personax)),
                                 ).then(onGoBack);
                               }),
                               IconButton(icon: Icon(Icons.delete), onPressed: (){
@@ -183,7 +183,7 @@ class _PersonaUIState extends State<PersonaUI> {
                                 ).then((value){
                                   if(value.toString()=="Success"){
                                     print(personax.id);
-                                    Provider.of<PersonaApi>(context, listen: false).deletePersona(personax.id).then((value) => onGoBack(value));
+                                    Provider.of<PersonaApi>(context, listen: false).deletePersona(personax.id);
                                     //var onGoBack = onGoBack;
                                     //BlocProvider.of<ProductosBloc>(context).add(DeleteProductoEvent(producto: state.productosList[index]));
                                   }
@@ -191,7 +191,7 @@ class _PersonaUIState extends State<PersonaUI> {
                               })
                             ]
                         )
-                        ),
+                    ),
                   ],
                 ),
               ),
@@ -204,4 +204,3 @@ class _PersonaUIState extends State<PersonaUI> {
   }
 
 }
-

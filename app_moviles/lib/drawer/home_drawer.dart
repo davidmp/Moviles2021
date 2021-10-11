@@ -37,7 +37,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
       ),
       DrawerList(
         index: DrawerIndex.Help,
-        labelName: 'Ver Predicción',
+        labelName: 'Persona Bloc',
         isAssetsImage: true,
         imageName: 'assets/imagen/man-icon.png',
       ),
