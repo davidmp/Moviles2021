@@ -1,10 +1,12 @@
 import 'package:app_moviles/apis/api_persona.dart';
+import 'package:app_moviles/bloc/persona/persona_bloc.dart';
 import 'package:app_moviles/drawer/app_theme.dart';
 import 'package:app_moviles/models/modelo_persona.dart';
 import 'package:checkbox_grouped/checkbox_grouped.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 class PersonaBFormEdit extends StatefulWidget {
@@ -214,14 +216,17 @@ class _PersonaBFormEditState extends State<PersonaBFormEdit> {
                                 mp.edad = _edad;
                                 mp.fecha_nac = _fecha_nac;
                                 mp.genero=_genero;
-                                var api = await Provider.of<PersonaApi>(context, listen: false).updatePersona(modelP.id,mp);
+                                mp.id=modelP.id;
+                                BlocProvider.of<PersonaBloc>(context).add(UpdatePersonaEvent(persona:  mp));
+                                Navigator.pop(context);
+                                /*var api = await Provider.of<PersonaApi>(context, listen: false).updatePersona(modelP.id,mp);
                                 print("ver: ${api.toJson()['mensaje']}");
                                 if (api.toJson()['mensaje'] =="updated!!") {
                                   Navigator.pop(context, () {
                                     setState(() {});
                                   });
                                   // Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationHomeScreen()));
-                                }
+                                }*/
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(

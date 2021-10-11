@@ -49,6 +49,8 @@ super(ProductosInitialState());*/
       }
     }else if(event is UpdatePersonaEvent){
       try{
+        print(event.persona.id);
+
         await _personaRepository.updatePersona(event.persona.id, event.persona);
         yield PersonaLoadingState();
         List<ModeloPersona> personaList= await _personaRepository.getPersona();
