@@ -1,16 +1,22 @@
 import 'package:app_moviles/apis/api_persona.dart';
+import 'package:app_moviles/bloc/persona/persona_bloc.dart';
 import 'package:app_moviles/drawer/app_theme.dart';
+import 'package:app_moviles/repository/PersonaRepository.dart';
 import 'package:app_moviles/ui/personab/personab_edit.dart';
 import 'package:app_moviles/ui/personab/personab_form.dart';
 import 'package:flutter/material.dart';
 import 'package:app_moviles/models/modelo_persona.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 class MainPersonaB extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Provider<PersonaApi>(
-      create: (_)=>PersonaApi.create(),
+    return MultiBlocProvider(
+      providers: [
+        //BlocProvider(create: (_)=>TickerBloc(Ticker())),
+        BlocProvider(create: (_)=>PersonaBloc( personaRepository: PersonaRepository())),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -46,6 +52,7 @@ class _PersonaUIBState extends State<PersonaUIB> {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<PersonaBloc>(context).add(ListarPersonaEvent());
     return Scaffold(
       appBar: new AppBar(
         title: Text(
@@ -80,7 +87,18 @@ class _PersonaUIBState extends State<PersonaUIB> {
 
       ),
       backgroundColor: AppTheme.nearlyWhite,
-      body: FutureBuilder<List<ModeloPersona>>(
+      body:  BlocBuilder<PersonaBloc, PersonaState>(
+    builder: (context, state){
+    if(state is PersonaLoadedState){
+        return _buildListView(state.personaList);
+    }else{
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    })
+
+      /*FutureBuilder<List<ModeloPersona>>(
         future: Provider.of<PersonaApi>(context, listen: true).getPersona(),
         builder: (BuildContext context,
             AsyncSnapshot<List<ModeloPersona>> snapshot) {
@@ -99,7 +117,7 @@ class _PersonaUIBState extends State<PersonaUIB> {
             );
           }
         },
-      ),
+      )*/,
     );
   }
 
@@ -183,9 +201,9 @@ class _PersonaUIBState extends State<PersonaUIB> {
                                 ).then((value){
                                   if(value.toString()=="Success"){
                                     print(personax.id);
-                                    Provider.of<PersonaApi>(context, listen: false).deletePersona(personax.id);
+                                    //Provider.of<PersonaApi>(context, listen: false).deletePersona(personax.id);
                                     //var onGoBack = onGoBack;
-                                    //BlocProvider.of<ProductosBloc>(context).add(DeleteProductoEvent(producto: state.productosList[index]));
+                                    BlocProvider.of<PersonaBloc>(context).add(DeletePersonaEvent(persona: personax));
                                   }
                                 });
                               })
