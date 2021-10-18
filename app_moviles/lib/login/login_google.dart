@@ -61,8 +61,8 @@ class _LoginPageState extends State<LoginPage> {
           if (result != null) {
             final api=Provider.of<PersonaApi>(context, listen: false);
             final usuario=new ModeloUser();
-             usuario.username="davidmp";
-             usuario.password="Moviles12345";
+             usuario.username="admin";
+             usuario.password="S1stemas";
               api.login(usuario).then((value) {
                 //print("Probando!!!......"+value.access_token);
                 token="JWT "+value.access_token;

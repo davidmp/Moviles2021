@@ -2,7 +2,7 @@ part of 'api_persona.dart';
 class _PersonaApi implements PersonaApi {
   _PersonaApi(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    this.baseUrl ??= "http://192.168.1.142:6060";
+    this.baseUrl ??= "http://192.168.1.143:6060";
   }
 
   final Dio _dio;

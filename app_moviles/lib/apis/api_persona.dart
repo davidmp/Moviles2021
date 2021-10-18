@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 part 'api_persona.g.dart';
 
-@RestApi(baseUrl: "http://192.168.1.142:6060")
+@RestApi(baseUrl: "http://192.168.1.143:6060")
 abstract class PersonaApi {
   factory PersonaApi(Dio dio, {String baseUrl})=_PersonaApi;
 
