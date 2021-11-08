@@ -8,7 +8,8 @@ from bson.objectid import ObjectId
 
 @app.route("/api/persona")
 def listarPersona():
-    data = list(mongo.db.persona.find())
+    data = list(mongo.db.persona.find({}, {"_id": False}))
+    #data = list(mongo.db.persona.find_and_replace({},{"_id": "id"}))
     #print(online_users)
     print("Holasss")
     return Response(
@@ -31,7 +32,7 @@ def listarPersonaId(id):
 
 
 @app.route("/api/persona/crear",methods=["POST"])
-@jwt_required()
+##@jwt_required()
 def crear():
     try:
         _json=request.json
