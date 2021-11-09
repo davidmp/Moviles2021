@@ -6,7 +6,7 @@ plugins {
     id("kotlin-kapt")
     kotlin("android.extensions")
     //id("kotlin-parcelize")
-    //id("dagger.hilt.android.plugin")
+    id("dagger.hilt.android.plugin")
     id("org.jlleitschuh.gradle.ktlint")
 }
 
@@ -83,6 +83,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
 
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+
     implementation ("androidx.core:core-ktx:1.7.0")
     implementation ("androidx.appcompat:appcompat:1.3.1")
     implementation ("com.google.android.material:material:1.4.0")
@@ -95,6 +97,16 @@ dependencies {
     androidTestImplementation ("androidx.test.ext:junit:1.1.3")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
 
+    //Kotlin
+    implementation(Dependencies.kotlin)
+
+    //coroutines
+    implementation(Coroutines.core)
+    implementation(Coroutines.android)
+
+    //coil-kt
+    implementation(Dependencies.coil)
+
     //Retrofit
     implementation(Retrofit.retrofit)
     implementation(Retrofit.moshiRetrofitConverter)
@@ -103,6 +115,17 @@ dependencies {
     implementation(Room.runtime)
     implementation(Room.ktx)
     kapt(Room.compiler)
+
+    //Moshi
+    implementation(Moshi.moshi)
+    implementation(Moshi.codeGen)
+    kapt(Moshi.codeGen)
+
+    //Hilt + Dagger
+    implementation(Hilt.hiltAndroid)
+    implementation(Hilt.hiltViewModel)
+    kapt(Hilt.daggerCompiler)
+    kapt(Hilt.hiltCompiler)
 
 }
 

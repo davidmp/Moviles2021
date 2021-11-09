@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "persona")
 data class Persona(
-    @PrimaryKey var id:String,
-    var dni:String?,
-    var nombre:String?,
-    var telefono:String?,
-    var edad:Int?,
-    @ColumnInfo(name = "fecha_nac") var fechaNac:String?,
-    var genero:String?
+    @PrimaryKey(autoGenerate = true) var id:Int=0,
+    var dni:String?="",
+    var nombre:String?="",
+    var telefono:String?="",
+    var edad:Int?=0,
+    @ColumnInfo(name = "fecha_nac") var fechaNac:String?="",
+    var genero:String?=""
 )
