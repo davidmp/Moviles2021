@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import pe.edu.upeu.appupeunative.R
 import pe.edu.upeu.appupeunative.databinding.FragmentHomeBinding
 
@@ -35,6 +36,16 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        binding.buttonIrPer.setOnClickListener {
+            var data=Bundle()
+            data.putString("nombre", "Raul")
+            data.putString("dni", "45632154")
+
+            findNavController().navigate(R.id.action_nav_home_to_personaFragment,data)
+        }
+
+
         return root
     }
 

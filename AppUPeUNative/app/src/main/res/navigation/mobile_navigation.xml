@@ -9,17 +9,37 @@
         android:id="@+id/nav_home"
         android:name="pe.edu.upeu.appupeunative.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_personaFragment"
+            app:destination="@id/personaFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="pe.edu.upeu.appupeunative.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_nav_gallery_to_nav_home"
+            app:popUpTo="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="pe.edu.upeu.appupeunative.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/personaFragment"
+        android:name="pe.edu.upeu.appupeunative.ui.persona.PersonaFragment"
+        android:label="persona_fragment"
+        tools:layout="@layout/persona_fragment" >
+        <action
+            android:id="@+id/action_personaFragment_to_nav_home"
+            app:popUpTo="@id/nav_home" />
+        <action
+            android:id="@+id/action_personaFragment_to_nav_gallery"
+            app:destination="@id/nav_gallery" />
+    </fragment>
 </navigation>

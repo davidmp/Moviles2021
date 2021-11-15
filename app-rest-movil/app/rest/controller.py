@@ -42,7 +42,9 @@ def crear():
         _json=request.json
         data_format=datetime.datetime.strptime(_json["fecha_nac"],'%Y-%m-%d')
         _json["fecha_nac"]=data_format
-        _json["_id"]=uuid.uuid1()
+        del _json["id"]
+        print(_json)
+        #_json["_id"]=uuid.uuid1()
         dbResponse=mongo.db.persona.insert_one(_json)
         
         print(dbResponse.inserted_id)
@@ -126,7 +128,7 @@ def update_two(id):
 
 
 @app.route("/api/persona/<string:id>", methods=["DELETE"])
-@jwt_required()
+#@jwt_required()
 def delete(id):
     try:
         dbResponse = mongo.db.persona.delete_one({"_id": ObjectId(id)})

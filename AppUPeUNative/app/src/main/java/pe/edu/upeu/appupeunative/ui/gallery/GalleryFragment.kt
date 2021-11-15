@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import pe.edu.upeu.appupeunative.R
 import pe.edu.upeu.appupeunative.databinding.FragmentGalleryBinding
 
@@ -35,6 +36,11 @@ class GalleryFragment : Fragment() {
         galleryViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        binding.buttonIrHome.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_gallery_to_nav_home)
+        }
+
         return root
     }
 
