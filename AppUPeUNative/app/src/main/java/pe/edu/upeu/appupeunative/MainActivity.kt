@@ -1,7 +1,9 @@
 package pe.edu.upeu.appupeunative
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -11,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import dagger.hilt.android.AndroidEntryPoint
 import pe.edu.upeu.appupeunative.databinding.ActivityMainBinding
 
@@ -29,10 +32,10 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
+        /*binding.appBarMain.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-        }
+        }*/
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -57,4 +60,21 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.action_theme->{
+               val mode=if((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK)==
+                   Configuration.UI_MODE_NIGHT_NO){
+                   AppCompatDelegate.MODE_NIGHT_YES
+               }else{
+                   AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY
+               }
+                AppCompatDelegate.setDefaultNightMode(mode)
+                true
+            }
+           else->false
+        }
+    }
+
 }

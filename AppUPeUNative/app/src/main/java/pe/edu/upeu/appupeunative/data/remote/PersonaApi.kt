@@ -2,6 +2,8 @@ package pe.edu.upeu.appupeunative.data.remote
 
 import pe.edu.upeu.appupeunative.modelo.ModeloMsg
 import pe.edu.upeu.appupeunative.modelo.Persona
+import pe.edu.upeu.appupeunative.modelo.Token
+import pe.edu.upeu.appupeunative.modelo.User
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -18,13 +20,16 @@ public interface PersonaApi {
     suspend fun getPersonaId(@Header("Authorization") token:String, @Query("id") id:Int):Response<List<Persona>>
 
     @DELETE("/api/persona/{id}")
-    suspend fun deletePersona(@Path("id") id:Int):Response<ModeloMsg>
+    suspend fun deletePersona(@Path("id") id:String):Response<ModeloMsg>
 
     @PATCH("/api/persona/{id}")
     suspend fun updatePersona(@Path("id") id:Int, @Body persona: Persona):Response<ModeloMsg>
 
     @POST("/api/persona/crear")
     suspend fun createPersona(@Body persona: Persona):Response<ModeloMsg>
+
+    @POST("/api/auth")
+    suspend fun login(@Body user: User):Token
 
 
 }

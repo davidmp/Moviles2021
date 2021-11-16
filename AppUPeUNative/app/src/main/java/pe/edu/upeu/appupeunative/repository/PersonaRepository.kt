@@ -1,11 +1,14 @@
 package pe.edu.upeu.appupeunative.repository
 
+import androidx.annotation.MainThread
+import androidx.annotation.WorkerThread
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import pe.edu.upeu.appupeunative.data.local.dao.PersonaDao
 import pe.edu.upeu.appupeunative.data.remote.PersonaApi
 import pe.edu.upeu.appupeunative.modelo.Persona
 import pe.edu.upeu.appupeunative.modelo.State
+import pe.edu.upeu.appupeunative.modelo.User
 import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,6 +26,19 @@ class PersonaRepository @Inject constructor(
             override suspend fun fetchFromRemote(): Response<List<Persona>> = personaApi.listarPersonas()
         }.asFlow();
     }
+
+    @WorkerThread
+    suspend fun deleteLocalPersona(persona: Persona)=personaDao.elimiarPersona(persona)
+
+    @MainThread
+    suspend fun deleteRemotePersona(personaId:String)=personaApi.deletePersona(personaId)
+
+    suspend fun deletePersonaById(persona: Persona){
+        deleteLocalPersona(persona)
+        deleteRemotePersona(persona.id)
+    }
+    @MainThread
+    suspend fun loginUser(user: User)=personaApi.login(user)
 
 
 

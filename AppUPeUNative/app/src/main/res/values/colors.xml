@@ -10,5 +10,7 @@
 
     <color name="bulbColor">@android:color/black</color>
     <color name="imageBackgroundTint">@android:color/black</color>
+    <color name="colorStatusNotConnected">#F44336</color>
+    <color name="colorStatusConnected">#4CAF50</color>
 
 </resources>

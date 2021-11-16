@@ -1,4 +1,3 @@
-//import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 
 plugins {
     id("com.android.application")
@@ -128,6 +127,8 @@ dependencies {
     kapt(Hilt.daggerCompiler)
     kapt(Hilt.hiltCompiler)
 
+    //call Modulo
+    implementation(project(":appmultiselect"))
 }
 
 ktlint {

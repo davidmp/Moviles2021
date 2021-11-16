@@ -39,7 +39,16 @@
             android:id="@+id/action_personaFragment_to_nav_home"
             app:popUpTo="@id/nav_home" />
         <action
-            android:id="@+id/action_personaFragment_to_nav_gallery"
-            app:destination="@id/nav_gallery" />
+            android:id="@+id/action_personaFragment_to_detallepersonaFragment"
+            app:destination="@id/detallepersonaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detallepersonaFragment"
+        android:name="pe.edu.upeu.appupeunative.ui.persona.detallepersona.DetallepersonaFragment"
+        android:label="detallepersona_fragment"
+        tools:layout="@layout/detallepersona_fragment" >
+        <action
+            android:id="@+id/action_detallepersonaFragment_to_personaFragment"
+            app:popUpTo="@id/personaFragment" />
     </fragment>
 </navigation>

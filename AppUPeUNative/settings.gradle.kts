@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "AppUPeUNative"
 include (":app")
+include(":appmultiselect")

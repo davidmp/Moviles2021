@@ -11,4 +11,6 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_persona">Persona</string>
+    <string name="text_no_connectivity">No hay conexión a internet</string>
+    <string name="text_connectivity">Conexion exitosa!!!</string>
 </resources>
