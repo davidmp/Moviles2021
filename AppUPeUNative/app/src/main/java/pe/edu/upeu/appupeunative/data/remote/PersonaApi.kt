@@ -22,11 +22,11 @@ public interface PersonaApi {
     @DELETE("/api/persona/{id}")
     suspend fun deletePersona(@Path("id") id:String):Response<ModeloMsg>
 
-    @PATCH("/api/persona/{id}")
-    suspend fun updatePersona(@Path("id") id:Int, @Body persona: Persona):Response<ModeloMsg>
+    @PATCH("/api/personaut/{id}")
+    suspend fun updatePersona(@Path("id") id:String, @Body persona: Persona):Response<ModeloMsg>
 
     @POST("/api/persona/crear")
-    suspend fun createPersona(@Body persona: Persona):Response<ModeloMsg>
+    suspend fun createPersona(@Header("Authorization") token:String, @Body persona: Persona):ModeloMsg
 
     @POST("/api/auth")
     suspend fun login(@Body user: User):Token

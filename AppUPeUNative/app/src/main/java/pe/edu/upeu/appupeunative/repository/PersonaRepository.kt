@@ -37,9 +37,25 @@ class PersonaRepository @Inject constructor(
         deleteLocalPersona(persona)
         deleteRemotePersona(persona.id)
     }
+
+    @WorkerThread
+    suspend fun modificarLocalPersona(persona: Persona)=personaDao.actualizarPersona(persona)
+
+    @MainThread
+    suspend fun modificarRemotePersona(persona: Persona)=personaApi.updatePersona(persona.id, persona)
+
+    suspend fun updatePersona(persona: Persona){
+        modificarLocalPersona(persona)
+        modificarRemotePersona(persona)
+    }
+
     @MainThread
     suspend fun loginUser(user: User)=personaApi.login(user)
 
+    @MainThread
+    fun getPersonaById(id:String)=personaDao.buscarPersonaId(id)
+
+    suspend fun insertProduct(token:String, persona: Persona)=personaApi.createPersona(token,persona)
 
 
 }

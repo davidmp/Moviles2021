@@ -85,7 +85,7 @@ class PersonaFragment : Fragment() {
             else->{
                 var data= Bundle()
                 data.putString("idData", persona.id)
-                findNavController().navigate(R.id.action_detallepersonaFragment_to_personaFragment, data).let { onDestroyView() }
+                findNavController().navigate(R.id.action_personaFragment_to_detallepersonaFragment, data).let { onDestroyView() }
                 /*val intent=Intent(this.context, DetailsActivity::class.java)
                 intent.putExtra(DetailsActivity.PRODUCT_ID,producto.id)
                 val options= ActivityOptionsCompat.makeSceneTransitionAnimation(

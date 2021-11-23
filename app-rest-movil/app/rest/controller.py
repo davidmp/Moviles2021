@@ -35,7 +35,7 @@ def listarPersonaId(id):
 
 
 @app.route("/api/persona/crear",methods=["POST"])
-##@jwt_required()
+@jwt_required()
 def crear():
     try:
         #u = uuid.uuid1()

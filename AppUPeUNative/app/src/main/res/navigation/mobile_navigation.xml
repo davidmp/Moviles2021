@@ -42,6 +42,7 @@
             android:id="@+id/action_personaFragment_to_detallepersonaFragment"
             app:destination="@id/detallepersonaFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/detallepersonaFragment"
         android:name="pe.edu.upeu.appupeunative.ui.persona.detallepersona.DetallepersonaFragment"
@@ -50,5 +51,8 @@
         <action
             android:id="@+id/action_detallepersonaFragment_to_personaFragment"
             app:popUpTo="@id/personaFragment" />
+        <argument
+            android:name="idData"
+            app:argType="string" />
     </fragment>
 </navigation>

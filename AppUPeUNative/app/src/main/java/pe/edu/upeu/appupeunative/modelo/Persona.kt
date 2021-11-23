@@ -11,6 +11,6 @@ data class Persona(
     var nombre:String?="",
     var telefono:String?="",
     var edad:Int?=0,
-    @ColumnInfo(name = "fecha_nac") var fechaNac:String?="",
+    @ColumnInfo(name = "fecha_nac") var fecha_nac:String?="",
     var genero:String?=""
 )

@@ -23,7 +23,7 @@ interface PersonaDao {
     fun reportarPersonas():Flow<List<Persona>>
 
     @Query("SELECT * FROM persona WHERE id=:id")
-    suspend fun buscarPersonaId(id:String):Persona
+    fun buscarPersonaId(id:String):Flow<Persona>
 
 
 }
