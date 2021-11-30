@@ -12,7 +12,7 @@ class ModeloPersona {
   ModeloPersona({this.id="",this.dni="", this.nombre="",this.telefono="", this.edad, this.fecha_nac="", this.genero});
   factory ModeloPersona.fromJson(Map<String, dynamic> map) {
     return ModeloPersona(
-        id: map["_id"],
+        id: map["id"],
         dni: map["dni"],
         nombre: map["nombre"],
         telefono: map["telefono"],
@@ -24,6 +24,7 @@ class ModeloPersona {
 
   Map<String, dynamic> toJson() {
     return {
+      "id":id,
       "dni": dni,
       "nombre": nombre,
       "telefono": telefono,

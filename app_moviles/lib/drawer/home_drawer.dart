@@ -43,7 +43,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
       ),
       DrawerList(
         index: DrawerIndex.FeedBack,
-        labelName: 'Grafico 01',
+        labelName: 'Persona Bloc Fire',
         icon: Icon(Icons.help),
       ),
       DrawerList(

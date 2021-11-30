@@ -9,10 +9,10 @@ import uuid
 
 @app.route("/api/persona")
 def listarPersona():
-    data = list(mongo.db.persona.find({}, {"_id": False}))
+    #data = list(mongo.db.persona.find({}, {"_id": False}))
     #data = list(mongo.db.persona.find_and_replace({},{"_id": "id"}))
     data = list(mongo.db.persona.find({}))
-    data=list(map(lambda person:{'id' if key=="_id" else key: val for key, val in person.items()}, data))
+    #data=list(map(lambda person:{'id' if key=="_id" else key: val for key, val in person.items()}, data)) # Activar Android Nativo
     #print(online_users)
     print("Holasss")
     return Response(
@@ -42,7 +42,7 @@ def crear():
         _json=request.json
         data_format=datetime.datetime.strptime(_json["fecha_nac"],'%Y-%m-%d')
         _json["fecha_nac"]=data_format
-        del _json["id"]
+        #del _json["id"] #Activar para android Nativo
         print(_json)
         #_json["_id"]=uuid.uuid1()
         dbResponse=mongo.db.persona.insert_one(_json)

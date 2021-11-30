@@ -1,6 +1,7 @@
 import 'package:app_moviles/apis/api_persona.dart';
 import 'package:app_moviles/drawer/navigation_home_screen.dart';
 import 'package:app_moviles/models/modelo_user.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:app_moviles/login/sing_in.dart';
 import 'package:provider/provider.dart';
@@ -59,6 +60,8 @@ class _LoginPageState extends State<LoginPage> {
         sinInwhitGoogle().then((result) {
           print("Holasssssss $result");
           if (result != null) {
+            WidgetsFlutterBinding.ensureInitialized();
+            Firebase.initializeApp();
             final api=Provider.of<PersonaApi>(context, listen: false);
             final usuario=new ModeloUser();
              usuario.username="admin";
